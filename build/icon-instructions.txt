@@ -1,0 +1,26 @@
+ICON FILES FOR ELECTRON APP
+===========================
+
+Place your application icons in this folder with these names:
+
+- icon.png (512x512 or larger) - Used for Linux
+- icon.ico - Used for Windows
+- icon.icns - Used for macOS
+
+If you don't have icons, electron-builder will use a default icon.
+
+To create icons from a PNG file:
+1. Start with a 1024x1024 PNG image
+2. Use an online converter or tools:
+   - Windows (.ico): Use ImageMagick or online converters
+   - macOS (.icns): Use "iconutil" on Mac or online converters
+   - Linux (.png): Just use your PNG file at 512x512
+
+Recommended icon guidelines:
+- Simple, recognizable design
+- Works well at small sizes (16x16)
+- Transparent background (PNG)
+- High contrast
+- Represents the app purpose
+
+For now, the app will build with a default Electron icon.

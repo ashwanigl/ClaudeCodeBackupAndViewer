@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giru Claude Conversation Backup & Viewer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="main-content">
+      <!-- Conversations List -->
+      <section class="conversations-panel" id="conversationsPanel">
+        <!-- Project Selector -->
+        <div class="project-selector-container">
+          <div class="project-selector-button" id="projectSelectorButton" onclick="toggleProjectSelector()">
+            <div class="project-selector-content">
+              <span class="project-selector-label">Project</span>
+              <span class="project-selector-current" id="currentProjectName">Select a project...</span>
+            </div>
+            <span class="project-selector-arrow" id="projectSelectorArrow">▼</span>
+          </div>
+          <div class="project-selector-dropdown" id="projectSelectorDropdown" style="display: none;">
+            <div class="project-list" id="projectList">
+              <!-- Projects will be populated here -->
+            </div>
+          </div>
+        </div>
+
+        <div id="conversationsList" class="conversations-list">
+          <div class="empty-state">
+            <p>👈 Select a project to view conversations</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Resize Handle -->
+      <div class="resize-handle" id="resizeHandle"></div>
+
+      <!-- Conversation Messages -->
+      <section class="messages-panel">
+        <div class="messages-header">
+          <div class="messages-header-top">
+            <div class="header-buttons">
+              <div class="button-group file-actions">
+                <button id="openConversation" class="header-button btn-primary" onclick="openSavedConversation()" title="Open saved conversation">
+                  📂 Open
+                </button>
+                <button id="backupProject" class="header-button btn-primary" onclick="backupProject()" title="Backup entire project">
+                  💾 Backup
+                </button>
+              </div>
+
+              <div class="button-group view-controls">
+                <button id="searchToggle" class="header-button btn-secondary" onclick="toggleSearch()" title="Search">
+                  🔍 Search
+                </button>
+                <button id="filterToggle" class="header-button btn-secondary active" onclick="toggleFilters()" title="Filter messages">
+                  🎯 Filter
+                </button>
+                <button id="refreshMessages" class="header-button btn-secondary" onclick="refreshMessages()" title="Refresh messages">
+                  🔄 Refresh
+                </button>
+              </div>
+
+              <div class="button-group appearance">
+                <button id="themeToggle" class="header-button btn-tertiary" onclick="toggleTheme()" title="Toggle theme">
+                  🌓 Theme
+                </button>
+                <button id="expandToggle" class="header-button btn-tertiary" onclick="toggleExpand()" title="Toggle fullscreen">
+                  <span id="expandText">⛶ Expand</span>
+                </button>
+                <button id="aboutToggle" class="header-button btn-tertiary" onclick="toggleAbout()" title="About">
+                  ℹ️ About
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="search-container" id="searchContainer" style="display: none;">
+            <div class="search-top-row">
+              <div class="search-input-wrapper">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search messages..." oninput="handleSearch()">
+                <button id="clearSearch" class="clear-search-button" onclick="clearSearch()" style="display: none;" title="Clear search">✕</button>
+              </div>
+              <div class="search-navigation" id="searchNavigation" style="display: none;">
+                <button class="search-nav-button" onclick="navigateSearchResult(-1)" title="Previous result">↑</button>
+                <span id="searchPosition" class="search-position">1/5</span>
+                <button class="search-nav-button" onclick="navigateSearchResult(1)" title="Next result">↓</button>
+              </div>
+            </div>
+            <div class="search-options">
+              <label class="search-option">
+                <input type="radio" name="searchScope" value="conversation" checked onchange="handleSearch()">
+                <span>This conversation</span>
+              </label>
+              <label class="search-option">
+                <input type="radio" name="searchScope" value="project" onchange="handleSearch()">
+                <span>All conversations</span>
+              </label>
+            </div>
+            <div id="searchResults" class="search-results-info"></div>
+          </div>
+          <div id="conversationMeta" class="conversation-meta"></div>
+        </div>
+        <div id="messagesList" class="messages-list">
+          <div class="empty-state">
+            <p>Select a conversation to view messages</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Bulk Actions Toolbar -->
+  <div id="bulkActionsToolbar" class="bulk-actions-toolbar">
+    <span class="bulk-actions-info"><span id="selectedCount">0</span> messages selected</span>
+    <button class="bulk-action-button" onclick="copySelectedMessages()">Copy Selected</button>
+    <button class="bulk-action-button secondary" onclick="clearSelection()">Clear Selection</button>
+  </div>
+
+  <!-- Scroll to Bottom Button -->
+  <button id="scrollToBottomButton" class="scroll-to-latest-button" onclick="scrollToLatest()" title="Scroll to bottom">
+    ↓
+  </button>
+
+  <input type="file" id="conversationFileInput" accept=".json,.jsonl" multiple style="display: none;" onchange="handleConversationFileSelect(event)">
+
+  <!-- About Modal -->
+  <div id="aboutModal" class="modal" style="display: none;" onclick="closeAboutIfClickedOutside(event)">
+    <div class="modal-content about-modal">
+      <button class="modal-close" onclick="toggleAbout()">&times;</button>
+      <div class="about-header">
+        <div class="about-logo">💬</div>
+        <h2>Giru Claude Conversation Backup & Viewer</h2>
+        <p class="version">Version 1.0.0</p>
+      </div>
+      <div class="about-body">
+        <p class="about-description">
+          A beautiful, standalone application for viewing and backing up your Claude CLI conversations.
+          Keep your AI conversations organized, searchable, and safely backed up.
+        </p>
+        <div class="about-features">
+          <h3>Features</h3>
+          <ul>
+            <li>📦 Standalone application - no server setup needed</li>
+            <li>🔍 Powerful search across conversations</li>
+            <li>💾 Backup entire projects as ZIP archives</li>
+            <li>🎨 Beautiful dark & light themes</li>
+            <li>🎯 Filter messages by type</li>
+          </ul>
+        </div>
+        <div class="about-links">
+          <a href="https://www.giru.ai" class="about-link primary" onclick="openExternal('https://www.giru.ai'); return false;">
+            🌐 Visit Giru.ai
+          </a>
+          <a href="https://github.com" class="about-link secondary" onclick="openExternal('https://github.com'); return false;">
+            📚 Documentation
+          </a>
+        </div>
+        <div class="about-footer">
+          <p>Built with ❤️ by Giru</p>
+          <p class="copyright">© 2026 Giru.ai - All rights reserved</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Backup Progress Modal -->
+  <div id="backupProgressModal" class="backup-progress-modal" style="display: none;">
+    <div class="backup-progress-content">
+      <h3>Backing up project...</h3>
+      <div class="progress-bar-container">
+        <div id="backupProgressBar" class="progress-bar"></div>
+      </div>
+      <p id="backupProgressText">Processing conversations...</p>
+    </div>
+  </div>
+
+  <script src="app.js?v=6"></script>
+</body>
+</html>

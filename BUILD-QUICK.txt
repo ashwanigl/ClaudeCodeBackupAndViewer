@@ -1,0 +1,63 @@
+==========================================
+BUILDING ELECTRON DESKTOP APP
+==========================================
+
+QUICK START:
+
+1. Install dependencies (including Electron):
+   npm install
+
+2. Build desktop app for all platforms:
+   npm run build
+
+3. Find installers in dist/ folder:
+   - Windows: Installer + Portable .exe (~100MB)
+   - macOS: .dmg installer (~90MB)
+   - Linux: AppImage, .deb, .rpm (~100MB)
+
+PLATFORM-SPECIFIC BUILDS:
+
+   npm run build:windows  (Windows installers)
+   npm run build:macos    (macOS .dmg - requires macOS)
+   npm run build:linux    (Linux packages)
+
+TEST BEFORE BUILDING:
+
+   npm start              (Opens desktop app window)
+
+WHAT YOU GET:
+
+- Native desktop application
+- Own window (no browser needed)
+- Start Menu / Applications folder integration
+- Professional installers
+- Auto-updates (if configured)
+
+FILE SIZES:
+
+Apps are ~100MB because they include:
+- Chromium browser engine
+- Node.js runtime
+- Your application code
+This is normal for Electron apps.
+
+DISTRIBUTION:
+
+Windows:
+  - Share the installer .exe
+  - Users run it and follow wizard
+  - App appears in Start Menu
+
+macOS:
+  - Share the .dmg file
+  - Users drag to Applications
+  - May need to allow in Security settings
+
+Linux:
+  - AppImage: Make executable and run
+  - DEB: sudo dpkg -i file.deb
+  - RPM: sudo rpm -i file.rpm
+
+For detailed instructions, see ELECTRON-BUILD.md
+
+==========================================

@@ -1,0 +1,66 @@
+==========================================
+CLAUDE CONVERSATION VIEWER - QUICK START
+==========================================
+
+RECOMMENDED: DOWNLOAD DESKTOP APP
+----------------------------------
+
+The easiest way is to download the desktop app:
+- Windows: Download the installer .exe
+- macOS: Download the .dmg file
+- Linux: Download the .AppImage
+
+No Node.js or installation needed!
+See QUICK-START.md for download links.
+
+
+RUNNING FROM SOURCE (DEVELOPERS)
+---------------------------------
+
+Prerequisites:
+- Node.js 14 or higher (download from nodejs.org)
+
+Installation:
+1. Open terminal/command prompt in this directory
+2. Run: npm install
+3. Run: npm start
+
+A desktop window will open with the app.
+
+
+WHAT'S THE DIFFERENCE?
+----------------------
+
+Desktop App (Recommended):
+  ✓ No Node.js needed
+  ✓ Professional installer
+  ✓ Start Menu / Applications integration
+  ✓ Native app experience
+  ✓ Easy distribution
+
+From Source (Development):
+  ✓ Latest code
+  ✓ Easy to modify
+  ✓ Can see console logs
+  ✓ Requires Node.js
+
+
+TROUBLESHOOTING:
+---------------
+
+"Claude directory not found":
+  - Make sure you've used Claude CLI at least once
+  - Directory: ~/.claude/projects (Mac/Linux)
+               %USERPROFILE%\.claude\projects (Windows)
+
+Windows security warning:
+  - Click "More info" → "Run anyway"
+  - Normal for unsigned apps
+
+macOS "App is damaged":
+  - Right-click → "Open" → Confirm
+  - Normal for unsigned apps
+
+For more help, see README.md or QUICK-START.md
+
+==========================================

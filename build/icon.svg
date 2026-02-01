@@ -1,0 +1,43 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with gradient -->
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#007AFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5856D6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="chatGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E5E5E7;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="115" fill="url(#bgGrad)"/>
+
+  <!-- Main chat bubble (larger) -->
+  <path d="M 140 180 L 340 180 Q 380 180 380 220 L 380 300 Q 380 340 340 340 L 220 340 L 180 380 L 180 340 L 160 340 Q 140 340 140 300 L 140 220 Q 140 180 160 180 Z"
+        fill="url(#chatGrad)"
+        stroke="none"/>
+
+  <!-- Secondary chat bubble (smaller, offset) -->
+  <path d="M 220 140 L 380 140 Q 420 140 420 180 L 420 240 Q 420 280 380 280 L 380 280 L 360 280 L 360 300 L 340 280 L 260 280 Q 220 280 220 240 L 220 180 Q 220 140 260 140 Z"
+        fill="rgba(255,255,255,0.85)"
+        stroke="none"/>
+
+  <!-- Chat lines in main bubble -->
+  <rect x="170" y="210" width="160" height="12" rx="6" fill="#007AFF" opacity="0.6"/>
+  <rect x="170" y="240" width="120" height="12" rx="6" fill="#007AFF" opacity="0.4"/>
+  <rect x="170" y="270" width="140" height="12" rx="6" fill="#007AFF" opacity="0.5"/>
+
+  <!-- Chat lines in secondary bubble -->
+  <rect x="250" y="170" width="130" height="10" rx="5" fill="#5856D6" opacity="0.5"/>
+  <rect x="250" y="195" width="100" height="10" rx="5" fill="#5856D6" opacity="0.4"/>
+
+  <!-- Save/Backup icon (small disk icon in corner) -->
+  <g transform="translate(340, 340)">
+    <circle cx="60" cy="60" r="50" fill="#34C759"/>
+    <rect x="35" y="40" width="50" height="35" rx="3" fill="white"/>
+    <rect x="42" y="40" width="36" height="10" rx="2" fill="#34C759"/>
+    <rect x="45" y="55" width="30" height="15" rx="1" fill="#34C759" opacity="0.3"/>
+  </g>
+</svg>
