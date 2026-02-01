@@ -1,6 +1,6 @@
-# Giru Claude Conversation Backup & Viewer
+# Giru Claude Code CLI Conversation Backup & Viewer
 
-A beautiful, standalone Mac application for viewing and backing up your Claude CLI conversations.
+A nice, standalone application for viewing and backing up your Claude CLI conversations.
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![Platform](https://img.shields.io/badge/platform-macOS-lightgrey)
@@ -20,7 +20,7 @@ A beautiful, standalone Mac application for viewing and backing up your Claude C
 
 ### Installation
 
-1. **From the built DMG** (Recommended):
+1. **From the built Installables** (Recommended):
    - Open `dist/Giru Claude Conversation Backup & Viewer-1.0.0-arm64.dmg`
    - Drag the app to your Applications folder
    - Launch it like any other Mac app!
@@ -105,33 +105,6 @@ ClaudeConversationViewer/
 └── README.md
 ```
 
-## 🎯 Key Changes from Previous Version
-
-1. **Application Branding**
-   - Renamed to "Giru Claude Conversation Backup & Viewer"
-   - Custom logo with chat bubbles and save indicator
-   - No "Electron" branding visible
-
-2. **Port Configuration**
-   - Changed from port 3000 to 58234
-   - Eliminates conflicts with typical development servers
-
-3. **UI Improvements**
-   - Flat button design with colored outlines
-   - Logical grouping of related functionality
-   - Increased spacing between groups (20px)
-   - Rounded corners throughout (20px border-radius)
-   - Color-coded button categories:
-     - Blue for file operations
-     - Purple for view controls
-     - Green for appearance settings
-
-4. **Application Packaging**
-   - Fully packaged as native Mac app
-   - DMG installer for easy distribution
-   - Auto-start server on app launch
-   - Professional app icon
-
 ## 🔧 Technical Details
 
 ### Port Configuration
@@ -142,20 +115,14 @@ If you need to change the port, edit `electron-main.js`:
 const PORT = 58234; // Change this value
 ```
 
-### Icon Regeneration
-To modify the logo:
-1. Edit `build/icon.svg`
-2. Run `./generate-icons.sh`
-3. Rebuild the app with `npm run build:macos`
-
 ## 📝 License
 
 MIT
 
 ## 🤝 Support
 
-For issues or questions, please check the Claude CLI documentation or contact support.
+For issues or questions, please raise an issue on GitHub.
 
 ---
 
-**Built with ❤️ for the Claude CLI community**
+**Built with ❤️ for the Claude Code CLI community**
