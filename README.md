@@ -30,7 +30,7 @@ A nice, standalone application for viewing and backing up your Claude CLI conver
    - Copy `Giru Claude Conversation Backup & Viewer.app` to your Applications folder
    - Double-click to launch
 
-### First Run
+### Running from Code Manually
 
 When you launch the app for the first time:
 - It will automatically start a local server on port 58234
@@ -59,13 +59,6 @@ Buttons are organized into three functional groups with distinct colors:
 #### 🌓 Appearance (Green Outline)
 - **🌓 Theme** - Switch between dark and light modes
 - **⛶ Expand** - Toggle fullscreen mode
-
-All buttons feature:
-- Transparent backgrounds
-- Colored outlines (2px borders)
-- Rounded corners (20px border-radius)
-- Smooth hover effects with subtle elevation
-- Grouped spacing (20px between groups, 8px within groups)
 
 ## 🛠 Development
 
@@ -110,7 +103,7 @@ ClaudeConversationViewer/
 ### Port Configuration
 The application uses port **58234** for its internal server. This high-numbered port is unlikely to conflict with typical development servers (3000, 8000, 8080, etc.).
 
-If you need to change the port, edit `electron-main.js`:
+If you need to change the port, edit `electron-main.js` and then rebuild the app:
 ```javascript
 const PORT = 58234; // Change this value
 ```
